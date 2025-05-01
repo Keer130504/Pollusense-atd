@@ -194,10 +194,7 @@
     const token = '820ae8ebf6f98831f78034544e2d8d03da7727ef'; // Replace with your WAQI token
 
     async function getAQI() {
-      const response=await fetch("");
-      const data=await reponse.json();
-      document.getElementsById("aqi-display").innerText=
-      `Temp:${data.temp}
+      
       const city = document.getElementById("city").value;
       const url = `https://api.waqi.info/feed/${city}/?token=${token}`;
 
