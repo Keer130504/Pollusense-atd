@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Air Pollution Detection</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://www.wallpaperflare.com/static/309/249/266/landscape-mist-pine-trees-pine-wallpaper.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      padding: 1rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-decoration: underline;
+    }
+
+    .slider {
+      max-width: 100%;
+      overflow: hidden;
+      border-radius: 10px;
+      margin: auto;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      transform: translateY(-50%);
+    }
+
+    .nav button {
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+
+    .aqi-section {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    select {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 1rem;
+    }
+
+    #aqi-display {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .sidebar {
+      margin-top: 2rem;
+    }
+
+    .link-item {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .link-item img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .link-item img:hover {
+      transform: scale(1.05);
+    }
+
+    .link-caption {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: #f0f0f5;
+    }
+
+    @media (min-width: 768px) {
+      .link-item img {
+        max-width: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>AIR POLLUTION DETECTION</h1>
+
+  <div class="slider">
+    <div class="slides" id="slides">
+      <div class="slide"><img src="https://www.authenticindiatours.com/app/uploads/2022/04/Mysore-Palace-Mysore-Karnataka-1400x550-c-default.jpg" alt="Image 1"></div>
+      <div class="slide"><img src="https://www.fabhotels.com/blog/wp-content/uploads/2019/06/India-Gate_1400.jpg" alt="Image 2"></div>
+      <div class="slide"><img src="https://www.authenticindiatours.com/app/uploads/2022/05/Sunset-Dal-Lake-Srinagar-Jammu-and-Kashmir-1400x550-c-default.jpg" alt="Image 3"></div>
+      <div class="slide"><img src="https://www.authenticindiatours.com/app/uploads/2022/05/Historic-Hooghly-River-Cruise-1400x550-c-default.jpg" alt="Image 4"></div>
+      <div class="slide"><img src="https://www.sancharamargi.com/wp-content/uploads/2023/09/kathakali_87-1400x600.jpg" alt="Image 5"></div>
+      <div class="slide"><img src="https://www.authenticindiatours.com/app/uploads/2022/03/Golden-Temple-Amritsar-Punjab-1400x550-c-default.jpg" alt="Image 6"></div>
+    </div>
+    <div class="nav">
+      <button onclick="moveSlide(-1)">&#10094;</button>
+      <button onclick="moveSlide(1)">&#10095;</button>
+    </div>
+  </div>
+
+  <div class="aqi-section">
+    <label for="city">Select a City:</label><br />
+    <select id="city" onchange="getAQI()">
+      <option value="Bengaluru">Karnataka</option>
+      <option value="Delhi">Delhi</option>
+      <option value="kolkata">Kolkata</option>
+      <option value="Kerala">Kerala</option>
+      <option value="jaipur">Rajasthan</option>
+      <option value="hyderabad">Hyderabad</option>
+      <option value="ahmedabad">Ahmedabad</option>
+      <option value="Pondicherry">Pondicherry</option>
+    </select>
+    <div id="aqi-display">AQI will be shown here...</div>
+  </div>
+
+  <div class="sidebar">
+    <div class="link-item">
+      <a href="https://www.nrdc.org/stories/air-pollution-everything-you-need-know" target="_blank">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBuJUWVk_fA_1eenfFrf-2G2vDLM3-ah4Vew&s" alt="Jist">
+        <div class="link-caption">JIST OF AIR POLLUTION</div>
+      </a>
+    </div>
+    <div class="link-item">
+      <a href="https://www.metropolisindia.com/blog/preventive-healthcare/air-pollution-diseases-you-need-to-be-aware-of" target="_blank">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQofztpGW1nBPp3XcOhFKdAPVhBqQ-_EvAxA&s" alt="Diseases">
+        <div class="link-caption">DISEASES CAUSED BY AIR POLLUTION</div>
+      </a>
+    </div>
+    <div class="link-item">
+      <a href="https://www.aqi.in/blog/en-in/10-best-ways-to-reduce-air-pollution/" target="_blank">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvygoc0pejgcAjVzSI0QOwFtaHUtf5tXp3WQ&s" alt="Measures">
+        <div class="link-caption">MEASURES TO BREATHE FRESH AIR</div>
+      </a>
+    </div>
+    <div class="link-item">
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3532603/" target="_blank">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjzkXCOoNPySpCo8c_rwgsPLJ2To-ebJ_6Wg&s" alt="Precautions">
+        <div class="link-caption">PRECAUTIONS</div>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    let currentIndex = 0;
+    const slides = document.getElementById('slides');
+    const totalSlides = slides.children.length;
+
+    function moveSlide(direction) {
+      currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    setInterval(() => moveSlide(1), 5000);
+
+    const token = '820ae8ebf6f98831f78034544e2d8d03da7727ef';
+    async function getAQI() {
+      const city = document.getElementById("city").value;
+      const url = `https://api.waqi.info/feed/${city}/?token=${token}`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.status === "ok") {
+          const aqi = data.data.aqi;
+          document.getElementById("aqi-display").innerText = `AQI in ${city.charAt(0).toUpperCase() + city.slice(1)}: ${aqi}`;
+        } else {
+          document.getElementById("aqi-display").innerText = "AQI data not available.";
+        }
+      } catch (error) {
+        document.getElementById("aqi-display").innerText = "Failed to load AQI data.";
+      }
+    }
+
+    window.onload = getAQI;
+  </script>
+</body>
+</html>
