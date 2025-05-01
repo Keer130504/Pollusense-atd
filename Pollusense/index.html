@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      position: relative;
+  top: 450px;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      
+    }
+
+    .slider {width:50%;
+      max-width:750px;
+      overflow: hidden;
+      border-radius: 10px;
+      margin: 30px;
+      margin-top: 600px;
+  
+    }
+
+    .slides {
+      display: flex;
+      width: 100%;
+      transition: transform 0.5s ease-in-out;
+      
+    }
+
+    .slide {
+      min-width: 100%;
+      overflow: hidden;
+      
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+     
+    }
+
+    .nav {
+      position: relative;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      
+    }
+
+    .nav button {
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      
+    }
+  </style>
+  <style>
+    body {
+      
+      font-family: Arial, sans-serif;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: rgba(53, 129, 124, 0.5);
+      right:0;
+      top:0;
+      color: white;
+      height: 100vh;
+      padding-top: 20px;
+      position: fixed;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 12px;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      background-color: #575757;
+    }
+
+  
+  </style>
+</head>
+<body>
+  <style>
+    .aqi-container{
+      margin:0px;
+      padding:0px;
+      box-sizing: border-box;
+
+    }
+  </style>
+  <body background="https://www.wallpaperflare.com/static/309/249/266/landscape-mist-pine-trees-pine-wallpaper.jpg">
+    
+<style heading>
+
+</style>
+<div class="slider">
+  <div class="slides" id="slides">
+    <div class="slide"><img src="https://www.authenticindiatours.com/app/uploads/2022/04/Mysore-Palace-Mysore-Karnataka-1400x550-c-default.jpg" alt="Image 1"></div>
+    <div class="slide"><img src="https://www.fabhotels.com/blog/wp-content/uploads/2019/06/India-Gate_1400.jpg" alt="Image 2"></div>
+    <div class="slide"><img src="https://www.authenticindiatours.com/app/uploads/2022/05/Sunset-Dal-Lake-Srinagar-Jammu-and-Kashmir-1400x550-c-default.jpg" alt="Image 3"></div>
+    <div class="slide"><img src="https://www.authenticindiatours.com/app/uploads/2022/05/Historic-Hooghly-River-Cruise-1400x550-c-default.jpg" alt="Image 4"></div>
+    <div class="slide"><img src="https://www.sancharamargi.com/wp-content/uploads/2023/09/kathakali_87-1400x600.jpg" alt="Image 5"></div>
+    <div class="slide"><img src="https://www.authenticindiatours.com/app/uploads/2022/03/Golden-Temple-Amritsar-Punjab-1400x550-c-default.jpg" alt="Image 6"></div>
+  </div>
+  <div class="nav">
+    <button onclick="moveSlide(-1)">&#10094;</button>
+    <button onclick="moveSlide(1)">&#10095;</button>
+  </div>
+</div>
+
+<script>
+  let currentIndex = 0;
+  const slides = document.getElementById('slides');
+  const totalSlides = slides.children.length;
+
+  function moveSlide(direction) {
+    currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+
+  // Optional: auto-slide
+  setInterval(() => moveSlide(1), 5000);
+</script>
+
+<div style="text-align:self; margin-bottom:20px;background-color: rgb(156, 236, 188);">
+  <style>
+    select{
+      padding:10px;
+      font-size: 20px;
+      border-radius:8px;
+      border: 1px solid;
+      margin-left:10px;
+
+    }
+  </style>
+  </div>
+  <div style="display: flex; align-items: flex-start;">
+    <!-- Image Slideshow -->
+    <div id="slideshow" style="margin-left:00px;">
+      <!-- Your image slider code here -->
+    </div> 
+  
+    <!-- AQI Section -->
+    <div id="aqi-container" 
+    style=
+    "margin-right:700px;
+    padding-left:1px;
+    margin-top:450px;
+    font-size: 25px;
+    font-weight:bold;
+    color: azure;
+    display:flex; 
+    flex-direction:column; 
+    justify-content:flex-start;">
+      <label for="city">Select a City:</label><br />
+      <select id="city" onchange="getAQI()">
+        <option value="Bengaluru">Karnataka</option>
+        <option value="Delhi">Delhi</option>
+        <option value="kolkata">Kolkata</option>
+        <option value="Kannur">Kerala</option>
+        <option value="Jaipur">Rajasthan</option>
+        <option value="Hyderabad">Hyderabad</option>
+        <option value="Ahmedabad">Ahmedabad</option>
+        <option value="Pondicherry">Pondicherry</option>
+      </select>
+  
+      <div id="aqi-display" style="margin-top: 5px;margin-right:20px;">AQI will be shown here...</div>
+    </div>
+  </div>
+  
+  <script>
+    const token = '820ae8ebf6f98831f78034544e2d8d03da7727ef'; // Replace with your WAQI token
+
+    async function getAQI() {
+      const response=await fetch("");
+      const data=await reponse.json();
+      document.getElementsById("aqi-display").innerText=
+      `Temp:${data.temp}
+      const city = document.getElementById("city").value;
+      const url = `https://api.waqi.info/feed/${city}/?token=${token}`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.status === "ok") {
+          const aqi = data.data.aqi;
+          document.getElementById("aqi-display").innerText = `AQI in ${city.charAt(0).toUpperCase() + city.slice(1)}: ${aqi}`;
+        } else {
+          document.getElementById("aqi-display").innerText = "AQI data not available.";
+        }
+      } catch (error) {
+        console.error("Error fetching AQI:", error);
+        document.getElementById("aqi-display").innerText = "Failed to load AQI data.";
+      }
+    }
+
+    // Optional: load AQI for the first city on page load
+    window.onload = getAQI;
+  </script>
+<h1 style="
+text-align: center; 
+font-size: 90px; 
+color: #0d2d12; 
+margin-bottom: 1800px;  
+font-style:'times of roman', Times, serif;
+position:absolute;
+text-decoration-line: underline overline;
+text-shadow:2px 2px 4px rgba(22, 87, 66,0.9)">
+  AIR POLLUTION DETECTION
+</h1>
+
+<!-- Main Flex Container -->
+<div style="display: flex; align-items: flex-start;">
+  <!-- Image Slideshow -->
+  <div id="slideshow" style="margin-right:1px; height:80px; width:80px;">
+    <!-- Your image slider code here -->
+  </div>
+  <div style="text-align:self; margin-bottom:20px;background-color: rgb(156, 236, 188);">
+  </style>
+  <style>
+  .link-item {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .link-item a {
+    text-decoration: none;
+    color: #f0f0f5;
+  }
+
+  .link-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  .link-item img:hover {
+    transform: scale(1.05);
+  }
+
+  .link-caption {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+<div class="link-item">
+  <a href="https://www.nrdc.org/stories/air-pollution-everything-you-need-know" target="_blank">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBuJUWVk_fA_1eenfFrf-2G2vDLM3-ah4Vew&s">
+    <div class="https://www.nrdc.org/stories/air-pollution-everything-you-need-know"><BOLD>JIST OF AIR POLLUTION</BOLD></div>
+  </a>
+</div>
+<div class="link-item">
+  <a href="https://www.metropolisindia.com/blog/preventive-healthcare/air-pollution-diseases-you-need-to-be-aware-of" target="_blank">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQofztpGW1nBPp3XcOhFKdAPVhBqQ-_EvAxA&s" alt="Air pollution brone diseases">
+    <div class="https://www.metropolisindia.com/blog/preventive-healthcare/air-pollution-diseases-you-need-to-be-aware-of"><BOLD>DISEASES CAUSED BY AIR POLLUTION</BOLD></div>
+  </a>
+</div>
+<div class="link-item">
+  <a href="https://www-aqi-in.webpkgcache.com/doc/-/s/www.aqi.in/blog/en-in/10-best-ways-to-reduce-air-pollution/"" target="_blank">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvygoc0pejgcAjVzSI0QOwFtaHUtf5tXp3WQ&s" alt="breathe fresh">
+    <div class="https://www-aqi-in.webpkgcache.com/doc/-/s/www.aqi.in/blog/en-in/10-best-ways-to-reduce-air-pollution/""><BOLD>MEASURES TO BREATHE FRESH AIR</BOLD></div>
+  </a>
+</div>
+<div class="link-item">
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3532603/" target="_blank">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjzkXCOoNPySpCo8c_rwgsPLJ2To-ebJ_6Wg&s" alt="PRECAUTIONS">
+      <div class="https://pmc.ncbi.nlm.nih.gov/articles/PMC3532603/">PRECAUTIONS</div>
+    </a>
+  </div>
+  </div>
+</body>
+</html>
